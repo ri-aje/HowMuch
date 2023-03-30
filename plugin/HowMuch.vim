@@ -22,7 +22,7 @@
 
 "command to display version number:
 "
-if exists("g:loaded_HowMuch") 
+if exists("g:loaded_HowMuch")
   finish
 endif
 let g:loaded_HowMuch = 1
@@ -103,85 +103,85 @@ if !hasmapto('<Plug>AutoCalcAppendWithEqAndSum','v')
   vmap  <leader>?=s <Plug>AutoCalcAppendWithEqAndSum
 endif"}}}
 
-"default mappings for bc
-"{{{
-if !hasmapto('<Plug>BcCalcReplace','v')
-  vmap  <leader><leader>b? <Plug>BcCalcReplace
-endif
+""default mappings for bc
+""{{{
+"if !hasmapto('<Plug>BcCalcReplace','v')
+"  vmap  <leader><leader>b? <Plug>BcCalcReplace
+"endif
 
-if !hasmapto('<Plug>BcCalcReplaceWithSum','v')
-  vmap  <leader><leader>b?s <Plug>BcCalcReplaceWithSum
-endif
+"if !hasmapto('<Plug>BcCalcReplaceWithSum','v')
+"  vmap  <leader><leader>b?s <Plug>BcCalcReplaceWithSum
+"endif
 
-if !hasmapto('<Plug>BcCalcAppend','v')
-  vmap  <leader>b? <Plug>BcCalcAppend
-endif
+"if !hasmapto('<Plug>BcCalcAppend','v')
+"  vmap  <leader>b? <Plug>BcCalcAppend
+"endif
 
-if !hasmapto('<Plug>BcCalcAppendWithEq','v')
-  vmap  <leader>b?= <Plug>BcCalcAppendWithEq
-endif
+"if !hasmapto('<Plug>BcCalcAppendWithEq','v')
+"  vmap  <leader>b?= <Plug>BcCalcAppendWithEq
+"endif
 
-if !hasmapto('<Plug>BcCalcAppendWithSum','v')
-  vmap  <leader>b?s <Plug>BcCalcAppendWithSum
-endif
+"if !hasmapto('<Plug>BcCalcAppendWithSum','v')
+"  vmap  <leader>b?s <Plug>BcCalcAppendWithSum
+"endif
 
-if !hasmapto('<Plug>BcCalcAppendWithEqAndSum','v')
-  vmap  <leader>b?=s <Plug>BcCalcAppendWithEqAndSum
-endif"}}}
+"if !hasmapto('<Plug>BcCalcAppendWithEqAndSum','v')
+"  vmap  <leader>b?=s <Plug>BcCalcAppendWithEqAndSum
+"endif"}}}
 
-"default mappings for vim
-"{{{
-if !hasmapto('<Plug>VimCalcReplace','v')
-  vmap  <leader><leader>v? <Plug>VimCalcReplace
-endif
+""default mappings for vim
+""{{{
+"if !hasmapto('<Plug>VimCalcReplace','v')
+"  vmap  <leader><leader>v? <Plug>VimCalcReplace
+"endif
 
-if !hasmapto('<Plug>VimCalcReplaceWithSum','v')
-  vmap  <leader><leader>v?s <Plug>VimCalcReplaceWithSum
-endif
+"if !hasmapto('<Plug>VimCalcReplaceWithSum','v')
+"  vmap  <leader><leader>v?s <Plug>VimCalcReplaceWithSum
+"endif
 
-if !hasmapto('<Plug>VimCalcAppend','v')
-  vmap  <leader>v? <Plug>VimCalcAppend
-endif
+"if !hasmapto('<Plug>VimCalcAppend','v')
+"  vmap  <leader>v? <Plug>VimCalcAppend
+"endif
 
-if !hasmapto('<Plug>VimCalcAppendWithEq','v')
-  vmap  <leader>v?= <Plug>VimCalcAppendWithEq
-endif
+"if !hasmapto('<Plug>VimCalcAppendWithEq','v')
+"  vmap  <leader>v?= <Plug>VimCalcAppendWithEq
+"endif
 
-if !hasmapto('<Plug>VimCalcAppendWithSum','v')
-  vmap  <leader>v?s <Plug>VimCalcAppendWithSum
-endif
+"if !hasmapto('<Plug>VimCalcAppendWithSum','v')
+"  vmap  <leader>v?s <Plug>VimCalcAppendWithSum
+"endif
 
-if !hasmapto('<Plug>VimCalcAppendWithEqAndSum','v')
-  vmap  <leader>v?=s <Plug>VimCalcAppendWithEqAndSum
-endif
+"if !hasmapto('<Plug>VimCalcAppendWithEqAndSum','v')
+"  vmap  <leader>v?=s <Plug>VimCalcAppendWithEqAndSum
+"endif
 
-"}}}
+""}}}
 
-"default mappings for python
-  "{{{
-if !hasmapto('<Plug>PyCalcReplace','v')
-  vmap  <leader><leader>p? <Plug>PyCalcReplace
-endif
+""default mappings for python
+"  "{{{
+"if !hasmapto('<Plug>PyCalcReplace','v')
+"  vmap  <leader><leader>p? <Plug>PyCalcReplace
+"endif
 
-if !hasmapto('<Plug>PyCalcReplaceWithSum','v')
-  vmap  <leader><leader>p?s <Plug>PyCalcReplaceWithSum
-endif
+"if !hasmapto('<Plug>PyCalcReplaceWithSum','v')
+"  vmap  <leader><leader>p?s <Plug>PyCalcReplaceWithSum
+"endif
 
-if !hasmapto('<Plug>PyCalcAppend','v')
-  vmap  <leader>p? <Plug>PyCalcAppend
-endif
+"if !hasmapto('<Plug>PyCalcAppend','v')
+"  vmap  <leader>p? <Plug>PyCalcAppend
+"endif
 
-if !hasmapto('<Plug>PyCalcAppendWithEq','v')
-  vmap  <leader>p?= <Plug>PyCalcAppendWithEq
-endif
+"if !hasmapto('<Plug>PyCalcAppendWithEq','v')
+"  vmap  <leader>p?= <Plug>PyCalcAppendWithEq
+"endif
 
-if !hasmapto('<Plug>PyCalcAppendWithSum','v')
-  vmap  <leader>p?s <Plug>PyCalcAppendWithSum
-endif
+"if !hasmapto('<Plug>PyCalcAppendWithSum','v')
+"  vmap  <leader>p?s <Plug>PyCalcAppendWithSum
+"endif
 
-if !hasmapto('<Plug>PyCalcAppendWithEqAndSum','v')
-  vmap  <leader>p?=s <Plug>PyCalcAppendWithEqAndSum
-endif
-"}}}
+"if !hasmapto('<Plug>PyCalcAppendWithEqAndSum','v')
+"  vmap  <leader>p?=s <Plug>PyCalcAppendWithEqAndSum
+"endif
+""}}}
 
 " vim: ts=2:sw=2:tw=78:fdm=marker:expandtab

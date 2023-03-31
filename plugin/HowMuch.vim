@@ -99,9 +99,9 @@ if !hasmapto('<Plug>AutoCalcAppendWithSum','v')
   vmap  <leader>?s <Plug>AutoCalcAppendWithSum
 endif
 
-if !hasmapto('<Plug>AutoCalcAppendWithEqAndSum','v')
-  vmap  <leader>?=s <Plug>AutoCalcAppendWithEqAndSum
-endif"}}}
+" if !hasmapto('<Plug>AutoCalcAppendWithEqAndSum','v')
+"   vmap  <leader>?=s <Plug>AutoCalcAppendWithEqAndSum
+" endif"}}}
 
 ""default mappings for bc
 ""{{{

@@ -20,11 +20,11 @@
 "CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 " }}}
 
-if exists("g:autoloaded_HowMuch") 
+if exists("g:autoloaded_HowMuch")
   finish
 endif
 let g:autoloaded_HowMuch = 1
-"let g:HowMuch_debug=1
+let g:HowMuch_debug=0
 
 "//////////////////////////////////////////////////////////////////////
 "                              Variables                              /
@@ -33,14 +33,14 @@ let g:HowMuch_scale   = exists('g:HowMuch_scale')?   g:HowMuch_scale   : 2
 let g:HowMuch_debug   = exists('g:HowMuch_debug')?   g:HowMuch_debug   : 0
 let g:HowMuch_auto_engines = exists('g:HowMuch_auto_engines')? g:HowMuch_auto_engines : ['bc', 'vim', 'py']
 
-let g:HowMuch_engine_map = exists('g:HowMuch_engine_map')? g:HowMuch_engine_map : { 
-            \'auto':function('HowMuch#calc_auto'), 
-            \ 'bc':function('HowMuch#calc_in_bc'),  
-            \ 'py':function('HowMuch#calc_in_py'),  
-            \ 'vim':function('HowMuch#calc_in_vim') }
+let g:HowMuch_engine_map = exists('g:HowMuch_engine_map')? g:HowMuch_engine_map : {
+            \ 'auto': function('HowMuch#calc_auto'),
+            \ 'bc':   function('HowMuch#calc_in_bc'),
+            \ 'py':   function('HowMuch#calc_in_py'),
+            \ 'vim':  function('HowMuch#calc_in_vim') }
 
 "//////////////////////////////////////////////////////////////////////
-"                         Helper  functions                         
+"                         Helper  functions
 "//////////////////////////////////////////////////////////////////////
 "{{{
 
@@ -83,12 +83,15 @@ function! HowMuch#float_to_str(expr)
   return  substitute(printf("%." . g:HowMuch_scale . "f", a:expr), '\.0*$', '','')
 endfunction
 "============================
-" change the numbers into float, 
+" change the numbers into float,
 " useful for vim engine to get the
 " right scale
 "============================
 function! HowMuch#to_float(expr)
-  return  substitute(a:expr,'[^.0-9^]\zs\d\+\ze\([^.0-9]\|$\)', '&.0', 'g')
+  let expr=substitute(a:expr,'[^.0-9^]\zs\d\+\ze\([^.0-9]\|$\)', '&.0', 'g')
+  " remove all comma to work with comma separated numbers.
+  let expr=substitute(l:expr,',', '', 'g')
+  return l:expr
 endfunction
 
 
@@ -108,7 +111,7 @@ function! HowMuch#get_visual_text()
   finally
     let @v = v_save
   endtry
-endfunction 
+endfunction
 
 
 "============================
@@ -135,7 +138,7 @@ endfunction
 "//////////////////////////////////////////////////////////////////////
 "============================
 " main funciton, do calculation on expressions. The funciton has 4 arguments:
-" isAppend: 
+" isAppend:
 "           1: the result will be appended after the expression
 "           0: the result will replace visual selected expression
 " withEq :
@@ -144,11 +147,11 @@ endfunction
 "           1: separator is ' = ' (space equal sign space)
 "           0: separator is a space.
 "
-" sum:    
+" sum:
 "           1: after the calculation of all expressions, do a SUM
 "           0: without doing sum calculation.
 "
-" engineType: 
+" engineType:
 "           see variable g:HowMuch_engine_map, it defines that use which
 "           engine to calculate the result.  If the value is 'auto', it will try engines
 "           (also follow the order) defined in g:HowMuch_auto_engines
@@ -200,7 +203,7 @@ function! HowMuch#HowMuch(isAppend, withEq, sum, engineType) range
         let total +=  str2float(result)
         call HowMuch#debug('after adding total, total:', string(total))
       endif
-    catch /.*/	
+    catch /.*/
       let has_err +=1
       let result = 'Err'
       "echoerr  v:exception
@@ -216,7 +219,7 @@ function! HowMuch#HowMuch(isAppend, withEq, sum, engineType) range
   if a:sum
     if has_err
      unlet total
-     let total = 'Err' 
+     let total = 'Err'
     endif
     "let total = has_err>0 ? 'Err': total
     call add(exps,repeat('-',max_len +2 ))
@@ -244,7 +247,7 @@ endfunction
 
 "============================
 " Do automatically calculation
-" Auto-Calc will pick engine from the user defined engine list 
+" Auto-Calc will pick engine from the user defined engine list
 " in order, to do calculation. The first result without error will
 " be returned
 " HowMuch#calc_auto doesn't throw any exception
@@ -270,7 +273,7 @@ function! HowMuch#calc_auto(expr)
 endfunction
 
 "============================
-"evaluation the expression with vim 
+"evaluation the expression with vim
 "============================
 function! HowMuch#calc_in_vim(expr)
   try
@@ -287,7 +290,7 @@ endfunction
 "============================
 "do math calculation with gnu bc -l
 "Note: echo 'abc'|bc -l will return 0
-"============================ 
+"============================
 function! HowMuch#calc_in_bc(expr)
   let r = system(printf('echo "scale=%d;%s"|bc -l &2>/dev/null', g:HowMuch_scale, a:expr))
   if v:shell_error>0
@@ -303,7 +306,7 @@ endfunction
 "============================
 "do math calculation with python
 "
-"============================ 
+"============================
 function! HowMuch#calc_in_py(expr)
   "echom fnamemodify(resolve(expand('<sfile>:p')), ':h')
   let py2 = 'python'
@@ -334,7 +337,7 @@ except Exception as e:
 
 vim.command("let result = '%s'" % str(result))
 EOF
-    
+
   call HowMuch#debug('Result from python', result)
   if result == 'Err'
       throw HowMuch#errMsg('Invalid python Expression ' . a:expr)

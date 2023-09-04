@@ -24,7 +24,6 @@ if exists("g:autoloaded_HowMuch")
   finish
 endif
 let g:autoloaded_HowMuch = 1
-let g:HowMuch_debug=0
 
 "//////////////////////////////////////////////////////////////////////
 "                              Variables                              /
@@ -89,8 +88,13 @@ endfunction
 "============================
 function! HowMuch#to_float(expr)
   let expr=substitute(a:expr,'[^.0-9^]\zs\d\+\ze\([^.0-9]\|$\)', '&.0', 'g')
+
+  " turn single x symbol into * for easier to express multiplication.
+  let expr=substitute(l:expr,'[0-9 ]*\zsx\ze[0-9 ]*', '*', 'g')
+
   " remove all comma to work with comma separated numbers.
   let expr=substitute(l:expr,',', '', 'g')
+
   return l:expr
 endfunction
 
@@ -191,8 +195,10 @@ function! HowMuch#HowMuch(isAppend, withEq, sum, engineType) range
   endif
 
   for i in range(len(exps))
+
     try
       "using a tmp value to store modified expression (to float)
+      call HowMuch#debug("before to_float:", exps[i])
       let e       = HowMuch#to_float(exps[i])
       call HowMuch#debug("after to_float:", e)
       let result  = g:HowMuch_engine_map[tolower(a:engineType)](e)

@@ -36,7 +36,8 @@ let g:HowMuch_engine_map = exists('g:HowMuch_engine_map')? g:HowMuch_engine_map 
             \ 'auto': function('HowMuch#calc_auto'),
             \ 'bc':   function('HowMuch#calc_in_bc'),
             \ 'py':   function('HowMuch#calc_in_py'),
-            \ 'vim':  function('HowMuch#calc_in_vim') }
+            \ 'vim':  function('HowMuch#calc_in_vim'),
+            \ 'pint':  function('HowMuch#calc_in_pint') }
 
 "//////////////////////////////////////////////////////////////////////
 "                         Helper  functions
@@ -351,6 +352,17 @@ EOF
   return HowMuch#removeTrailingZero(result)
 endfunction
 
+"============================
+"do math calculation with python pint lib and script.
+"============================
+function! HowMuch#calc_in_pint(expr)
+  let r = system(printf('pint.calc.py "%s"', a:expr))
+  if v:shell_error>0
+    throw HowMuch#errMsg('pint.calc.py return error: '. v:shell_error)
+  endif
+  "removing the ending line break
+  let r = substitute(r, '[\n\r]*$', '', '')
+  return HowMuch#removeTrailingZero(r)
+endfunction
+
 " vim: ts=2:sw=2:tw=78:fdm=marker:expandtab
-
-

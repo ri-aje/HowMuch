@@ -81,19 +81,19 @@ endif
 
 "default mappings for auto
 "{{{
-if !hasmapto('<Plug>AutoCalcReplace','v')
-  vmap <leader><leader>? <Plug>AutoCalcReplace
-endif
-if !hasmapto('<Plug>AutoCalcReplaceWithSum','v')
-  vmap <leader><leader>?s <Plug>AutoCalcReplaceWithSum
-endif
+" if !hasmapto('<Plug>AutoCalcReplace','v')
+"   vmap <leader><leader>? <Plug>AutoCalcReplace
+" endif
+" if !hasmapto('<Plug>AutoCalcReplaceWithSum','v')
+"   vmap <leader><leader>?s <Plug>AutoCalcReplaceWithSum
+" endif
 if !hasmapto('<Plug>AutoCalcAppend','v')
   vmap <leader>? <Plug>AutoCalcAppend
 endif
 
-if !hasmapto('<Plug>AutoCalcAppendWithEq','v')
-  vmap  <leader>?= <Plug>AutoCalcAppendWithEq
-endif
+" if !hasmapto('<Plug>AutoCalcAppendWithEq','v')
+"   vmap  <leader>?= <Plug>AutoCalcAppendWithEq
+" endif
 
 if !hasmapto('<Plug>AutoCalcAppendWithSum','v')
   vmap  <leader>?s <Plug>AutoCalcAppendWithSum

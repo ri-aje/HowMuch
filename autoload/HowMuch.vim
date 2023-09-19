@@ -88,13 +88,15 @@ endfunction
 " right scale
 "============================
 function! HowMuch#to_float(expr)
-  let expr=substitute(a:expr,'[^.0-9^]\zs\d\+\ze\([^.0-9]\|$\)', '&.0', 'g')
+  let expr = a:expr
+
+  " remove all comma to work with comma separated numbers.
+  let expr=substitute(a:expr,',', '', 'g')
 
   " turn single x symbol into * for easier to express multiplication.
   let expr=substitute(l:expr,'[0-9 ]*\zsx\ze[0-9 ]*', '*', 'g')
 
-  " remove all comma to work with comma separated numbers.
-  let expr=substitute(l:expr,',', '', 'g')
+  let expr=substitute(l:expr,'[^.0-9^]\zs\d\+\ze\([^.0-9]\|$\)', '&.0', 'g')
 
   return l:expr
 endfunction

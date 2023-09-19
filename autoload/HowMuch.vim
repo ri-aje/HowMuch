@@ -91,7 +91,10 @@ function! HowMuch#to_float(expr)
   let expr = a:expr
 
   " remove all comma to work with comma separated numbers.
-  let expr=substitute(a:expr,',', '', 'g')
+  let expr=substitute(l:expr,',', '', 'g')
+
+  " remove dollar sign to work with monetary numbers.
+  let expr=substitute(l:expr,'\$', '', 'g')
 
   " turn single x symbol into * for easier to express multiplication.
   let expr=substitute(l:expr,'[0-9 ]*\zsx\ze[0-9 ]*', '*', 'g')

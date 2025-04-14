@@ -99,6 +99,9 @@ function! HowMuch#to_float(expr)
   " turn single x symbol into * for easier to express multiplication.
   let expr=substitute(l:expr,'[0-9 ]*\zsx\ze[0-9 ]*', '*', 'g')
 
+  " turn % into /100.0 for easier to express percentage numbers.
+  let expr=substitute(l:expr,'[0-9 ]*\zs%\ze', '/100.0', 'g')
+
   let expr=substitute(l:expr,'[^.0-9^]\zs\d\+\ze\([^.0-9]\|$\)', '&.0', 'g')
 
   return l:expr

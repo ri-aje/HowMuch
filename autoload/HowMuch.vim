@@ -96,9 +96,6 @@ function! HowMuch#to_float(expr)
   " remove dollar sign to work with monetary numbers.
   let expr=substitute(l:expr, '\$', '', 'g')
 
-  " remove letters to work with equation comments.
-  let expr=substitute(l:expr, '[a-zA-Z]', '', 'g')
-
   " remove simple empty ()[]{} to work with equation comments.
   let expr=substitute(l:expr, '( *)', '', 'g')
   let expr=substitute(l:expr, '\[ *\]', '', 'g')
@@ -109,6 +106,10 @@ function! HowMuch#to_float(expr)
 
   " turn % into /100.0 for easier to express percentage numbers.
   let expr=substitute(l:expr, '[0-9 ]*\zs%\ze', '/100.0', 'g')
+
+  " remove letters to work with equation comments. must be after
+  " treating x as * symbol to facilitate multiplication expressions.
+  let expr=substitute(l:expr, '[a-zA-Z]', '', 'g')
 
   let expr=substitute(l:expr, '[^.0-9^]\zs\d\+\ze\([^.0-9]\|$\)', '&.0', 'g')
 
